@@ -19,10 +19,6 @@ public class PairController extends Controller {
 
     @Override
     public void run() {
-        start();
-    }
-
-    private void start() {
         while (gameRun) {
             String function = readFunction();
             doFunction(function);
