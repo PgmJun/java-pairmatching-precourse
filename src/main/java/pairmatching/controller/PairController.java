@@ -43,19 +43,12 @@ public class PairController extends Controller {
     }
 
     private void show() {
-        MissionPair missionPair = findPair();
+        MissionPair missionPair = repeat(this::findMissionPair);
         outputView.printMissionPairs(missionPair);
     }
 
-    private MissionPair findPair() {
-        MissionPair missionPair;
-        try {
-            missionPair = pairService.findMissionPair(readMatchData());
-        } catch (IllegalArgumentException error) {
-            outputView.printError(error);
-            missionPair = findPair();
-        }
-        return missionPair;
+    private MissionPair findMissionPair() {
+        return pairService.findMissionPair(readMatchData());
     }
 
     private void match() {
