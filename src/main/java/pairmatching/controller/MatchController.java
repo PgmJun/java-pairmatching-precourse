@@ -42,6 +42,8 @@ public class MatchController {
 				matchPairs();
 			} else if (function.equals("2")) {
 				showPairs();
+			} else if(function.equals("3")) {
+				resetPairs();
 			}
 		}
 	}
@@ -117,6 +119,11 @@ public class MatchController {
 			matchingInfo = readMatchingInfo();
 		}
 		return matchingInfo;
+	}
+
+	private void resetPairs() {
+		pairs = new HashMap<>();
+		outputView.printPairResetMessage();
 	}
 
 	private boolean doRematch() {

@@ -47,7 +47,11 @@ public class OutputView {
 			}
 			System.out.println(joiner);
 		}
+	}
+
+	public void printPairResetMessage() {
 		printEnter();
+		System.out.println("초기화 되었습니다.");
 	}
 
 	public void printErrorMessage(Exception e) {
