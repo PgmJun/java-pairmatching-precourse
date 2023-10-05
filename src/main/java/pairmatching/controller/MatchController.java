@@ -40,6 +40,8 @@ public class MatchController {
 			function = readFunction();
 			if (function.equals("1")) {
 				matchPairs();
+			} else if (function.equals("2")) {
+				showPairs();
 			}
 		}
 	}
@@ -65,6 +67,25 @@ public class MatchController {
 			return;
 		}
 		match(matchingInfo);
+	}
+
+	private void showPairs() {
+		MatchingInfo matchingInfo = readMatchingInfo();
+
+		try {
+			validateMatchingDataExist(matchingInfo);
+			outputView.printMatchingResult(pairs.get(matchingInfo.getMission()));
+
+		} catch (IllegalArgumentException e) {
+			outputView.printErrorMessage(e);
+			showPairs();
+		}
+	}
+
+	private void validateMatchingDataExist(MatchingInfo matchingInfo) {
+		if (!pairs.containsKey(matchingInfo.getMission())) {
+			throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
+		}
 	}
 
 	private MatchingInfo readMatchingInfo() {
