@@ -35,7 +35,7 @@ public class Matching {
 				matchedCrewNames.add(crewNames.get(i+1));
 				matchedCrewNames.add(crewNames.get(i+2));
 				pair.add(matchedCrewNames);
-				continue;
+				break;
 			}
 			matchedCrewNames.add(crewNames.get(i));
 			matchedCrewNames.add(crewNames.get(i+1));

@@ -21,7 +21,7 @@ public class MatchController {
 
 	private final InputView inputView;
 	private final OutputView outputView;
-	private Map<Mission, Matching> pairs = new HashMap<>();
+	private Map<MatchingInfo, Matching> pairs = new HashMap<>();
 
 	public MatchController(InputView inputView, OutputView outputView) {
 		this.inputView = inputView;
@@ -59,9 +59,9 @@ public class MatchController {
 
 	private void matchPairs() {
 		MatchingInfo matchingInfo = readMatchingInfo();
-		if (pairs.containsKey(matchingInfo.getMission())) {
+		if (pairsContainsKey(matchingInfo)) {
 			if (doRematch()) {
-				pairs.remove(matchingInfo.getMission());
+				pairs.remove(matchingInfo);
 				match(matchingInfo);
 			}
 			return;
@@ -69,12 +69,22 @@ public class MatchController {
 		match(matchingInfo);
 	}
 
+	private boolean pairsContainsKey(MatchingInfo matchingInfo) {
+		for (MatchingInfo key : pairs.keySet()) {
+			if (key.getCourse().equals(matchingInfo.getCourse()) &&
+				key.getMission().equals(matchingInfo.getMission())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private void showPairs() {
 		MatchingInfo matchingInfo = readMatchingInfo();
 
 		try {
 			validateMatchingDataExist(matchingInfo);
-			outputView.printMatchingResult(pairs.get(matchingInfo.getMission()));
+			outputView.printMatchingResult(findMatchingResult(matchingInfo));
 
 		} catch (IllegalArgumentException e) {
 			outputView.printErrorMessage(e);
@@ -82,8 +92,18 @@ public class MatchController {
 		}
 	}
 
+	private Matching findMatchingResult(MatchingInfo matchingInfo) {
+		MatchingInfo pairMatchingInfo = pairs.keySet().stream()
+			.filter(k -> k.getCourse().equals(matchingInfo.getCourse()))
+			.filter(k -> k.getMission().equals(matchingInfo.getMission()))
+			.findAny()
+			.get();
+
+		return pairs.get(pairMatchingInfo);
+	}
+
 	private void validateMatchingDataExist(MatchingInfo matchingInfo) {
-		if (!pairs.containsKey(matchingInfo.getMission())) {
+		if (!pairsContainsKey(matchingInfo)) {
 			throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
 		}
 	}
@@ -113,7 +133,7 @@ public class MatchController {
 	private void match(MatchingInfo matchingInfo) {
 		Matching matchingResult = Matching.match(matchingInfo);
 
-		pairs.put(matchingInfo.getMission(), matchingResult);
+		pairs.put(matchingInfo, matchingResult);
 		outputView.printMatchingResult(matchingResult);
 	}
 }
