@@ -8,6 +8,7 @@ import pairmatching.domain.Matching;
 public class OutputView {
 
 	public void printSelectFunctionMessage() {
+		printEnter();
 		System.out.println("기능을 선택하세요.\n"
 			+ "1. 페어 매칭\n"
 			+ "2. 페어 조회\n"
@@ -31,6 +32,7 @@ public class OutputView {
 	}
 
 	public void printRematchingQuestionMessage() {
+		printEnter();
 		System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
 			+ "예 | 아니오");
 	}
