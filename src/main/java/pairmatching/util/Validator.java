@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Validator {
 	private final static List<String> functions = Arrays.asList("1","2","3","Q");
-	private final static List<String> rematchAnswers = Arrays.asList("예", "아니오");
+	private final static List<String> rematchAnswers = Arrays.asList("네", "아니오");
 
 	public static void validateFunctionType(String function) {
 
@@ -22,7 +22,7 @@ public class Validator {
 
 	public static void validateReMatchAnswer(String answer) {
 		if(!rematchAnswers.contains(answer)) {
-			throw new IllegalArgumentException("[ERROR] '예' 또는 '아니오' 중 하나의 응답만 가능합니다.");
+			throw new IllegalArgumentException("[ERROR] '네' 또는 '아니오' 중 하나의 응답만 가능합니다.");
 		}
 	}
 }

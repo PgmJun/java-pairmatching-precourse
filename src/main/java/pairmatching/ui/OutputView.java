@@ -34,7 +34,7 @@ public class OutputView {
 	public void printRematchingQuestionMessage() {
 		printEnter();
 		System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
-			+ "예 | 아니오");
+			+ "네 | 아니오");
 	}
 
 	public void printMatchingResult(Matching matchingResult) {

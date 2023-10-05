@@ -32,7 +32,7 @@ public class InputView {
 		String rematchAnswer = Console.readLine();
 
 		Validator.validateReMatchAnswer(rematchAnswer);
-		if(rematchAnswer.equals("예")) {
+		if(rematchAnswer.equals("네")) {
 			return true;
 		}
 		return false;
