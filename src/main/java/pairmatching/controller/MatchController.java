@@ -13,6 +13,7 @@ import pairmatching.domain.Crews;
 import pairmatching.domain.Matching;
 import pairmatching.domain.MatchingInfo;
 import pairmatching.domain.Mission;
+import pairmatching.domain.Pairs;
 import pairmatching.ui.InputView;
 import pairmatching.ui.OutputView;
 import pairmatching.util.CrewNameReader;
@@ -21,7 +22,7 @@ public class MatchController {
 
 	private final InputView inputView;
 	private final OutputView outputView;
-	private Map<MatchingInfo, Matching> pairs = new HashMap<>();
+	Pairs pairs = new Pairs();
 
 	public MatchController(InputView inputView, OutputView outputView) {
 		this.inputView = inputView;
@@ -72,9 +73,9 @@ public class MatchController {
 	}
 
 	private boolean pairsContainsKey(MatchingInfo matchingInfo) {
-		for (MatchingInfo key : pairs.keySet()) {
-			if (key.getCourse().equals(matchingInfo.getCourse()) &&
-				key.getMission().equals(matchingInfo.getMission())) {
+		for (MatchingInfo info : pairs.getMatchingInfos()) {
+			if (info.getCourse().equals(matchingInfo.getCourse()) &&
+				info.getMission().equals(matchingInfo.getMission())) {
 				return true;
 			}
 		}
@@ -86,7 +87,7 @@ public class MatchController {
 
 		try {
 			validateMatchingDataExist(matchingInfo);
-			outputView.printMatchingResult(findMatchingResult(matchingInfo));
+			outputView.printMatchingResult(pairs.findMatchingResult(matchingInfo));
 
 		} catch (IllegalArgumentException e) {
 			outputView.printErrorMessage(e);
@@ -94,15 +95,7 @@ public class MatchController {
 		}
 	}
 
-	private Matching findMatchingResult(MatchingInfo matchingInfo) {
-		MatchingInfo pairMatchingInfo = pairs.keySet().stream()
-			.filter(k -> k.getCourse().equals(matchingInfo.getCourse()))
-			.filter(k -> k.getMission().equals(matchingInfo.getMission()))
-			.findAny()
-			.get();
 
-		return pairs.get(pairMatchingInfo);
-	}
 
 	private void validateMatchingDataExist(MatchingInfo matchingInfo) {
 		if (!pairsContainsKey(matchingInfo)) {
@@ -122,7 +115,7 @@ public class MatchController {
 	}
 
 	private void resetPairs() {
-		pairs = new HashMap<>();
+		pairs.reset();
 		outputView.printPairResetMessage();
 	}
 
@@ -140,7 +133,7 @@ public class MatchController {
 	private void match(MatchingInfo matchingInfo) {
 		Matching matchingResult = Matching.match(matchingInfo);
 
-		pairs.put(matchingInfo, matchingResult);
+		pairs.add(matchingInfo, matchingResult);
 		outputView.printMatchingResult(matchingResult);
 	}
 }
