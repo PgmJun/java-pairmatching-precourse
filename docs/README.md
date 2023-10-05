@@ -44,16 +44,16 @@
 
 ###  ☑️ 체크리스트
 
-- [ ] 브랜치를 생성 후 변경하였는가
-- [ ] JDK 8 버전에서 실행 가능해야 한다
-- [ ] 자바 코드 컨벤션을 지키면서 프로그래밍한다. https://naver.github.io/hackday-conventions-java
-- [ ] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용
-- [ ] 3항 연산자를 쓰지 않는다.
-- [ ] 함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-  - [ ] 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.
-- [ ] else 예약어를 쓰지 않는다.
-- [ ] build.gradle 파일을 변경할 수 없고, 외부 라이브러리를 사용하지 않는다.
-- [ ] JDK에서 기본 제공하는 Random, Scanner API 대신 `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms, Console API`를 활용해 구현해야 한다.
-  - [ ] Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `shuffle()`를 활용한다.
-  - [ ] 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
-- [ ] 프로그램 구현을 완료했을 때 src/test/java 디렉터리의 ApplicationTest에 있는 **모든 테스트 케이스가 성공해야 한다.** 테스트가 실패할 경우 0점 처리한다.
+- [x] 브랜치를 생성 후 변경하였는가
+- [x] JDK 8 버전에서 실행 가능해야 한다
+- [x] 자바 코드 컨벤션을 지키면서 프로그래밍한다. https://naver.github.io/hackday-conventions-java
+- [x] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용
+- [x] 3항 연산자를 쓰지 않는다.
+- [x] 함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다.
+  - [x] 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.
+- [x] else 예약어를 쓰지 않는다.
+- [x] build.gradle 파일을 변경할 수 없고, 외부 라이브러리를 사용하지 않는다.
+- [x] JDK에서 기본 제공하는 Random, Scanner API 대신 `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms, Console API`를 활용해 구현해야 한다.
+  - [x] Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `shuffle()`를 활용한다.
+  - [x] 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
+- [x] 프로그램 구현을 완료했을 때 src/test/java 디렉터리의 ApplicationTest에 있는 **모든 테스트 케이스가 성공해야 한다.** 테스트가 실패할 경우 0점 처리한다.
