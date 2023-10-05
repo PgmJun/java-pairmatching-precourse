@@ -28,10 +28,4 @@ public enum Mission {
 			.findAny()
 			.orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 Mission 입니다."));
 	}
-
-	public static List<Mission> findByLevel(Level level) {
-		return Arrays.stream(values())
-			.filter(m -> m.level.equals(level))
-			.collect(Collectors.toList());
-	}
 }

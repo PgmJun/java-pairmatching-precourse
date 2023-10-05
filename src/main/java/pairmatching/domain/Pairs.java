@@ -2,7 +2,6 @@ package pairmatching.domain;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class Pairs {
 	private Map<MatchingInfo, Matching> pairs;
@@ -36,7 +35,7 @@ public class Pairs {
 		for (MatchingInfo info : pairs.keySet()) {
 			if (info.getCourse().equals(matchingInfo.getCourse()) &&
 				info.getMission().equals(matchingInfo.getMission()) &&
-				info.getMission().getLevel().equals(matchingInfo.getLevel())){
+				info.getMission().getLevel().equals(matchingInfo.getLevel())) {
 				return true;
 			}
 		}

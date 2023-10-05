@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CrewNameReader {
-	private CrewNameReader(){}
+	private CrewNameReader() {
+	}
 
 	private static BufferedReader br;
 	private static final String BACKEND_CREW_PATH = "src/main/resources/backend-crew.md";
@@ -26,7 +27,7 @@ public class CrewNameReader {
 		try {
 			br = new BufferedReader(new FileReader(crewFilePath));
 			String crewName;
-			while((crewName = br.readLine()) != null) {
+			while ((crewName = br.readLine()) != null) {
 				crewNames.add(crewName);
 			}
 
