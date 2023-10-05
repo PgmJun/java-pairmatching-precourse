@@ -1,18 +1,10 @@
 package pairmatching.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 import pairmatching.domain.Crews;
 import pairmatching.domain.Matching;
 import pairmatching.domain.MatchingInfo;
-import pairmatching.domain.Mission;
 import pairmatching.domain.Pairs;
 import pairmatching.ui.InputView;
 import pairmatching.ui.OutputView;
@@ -60,49 +52,6 @@ public class MatchController {
 		return function;
 	}
 
-	private void matchPairs() {
-		MatchingInfo matchingInfo = readMatchingInfo();
-		if (pairsContainsKey(matchingInfo)) {
-			if (doRematch()) {
-				pairs.remove(matchingInfo);
-				match(matchingInfo);
-			}
-			return;
-		}
-		match(matchingInfo);
-	}
-
-	private boolean pairsContainsKey(MatchingInfo matchingInfo) {
-		for (MatchingInfo info : pairs.getMatchingInfos()) {
-			if (info.getCourse().equals(matchingInfo.getCourse()) &&
-				info.getMission().equals(matchingInfo.getMission())) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private void showPairs() {
-		MatchingInfo matchingInfo = readMatchingInfo();
-
-		try {
-			validateMatchingDataExist(matchingInfo);
-			outputView.printMatchingResult(pairs.findMatchingResult(matchingInfo));
-
-		} catch (IllegalArgumentException e) {
-			outputView.printErrorMessage(e);
-			showPairs();
-		}
-	}
-
-
-
-	private void validateMatchingDataExist(MatchingInfo matchingInfo) {
-		if (!pairsContainsKey(matchingInfo)) {
-			throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
-		}
-	}
-
 	private MatchingInfo readMatchingInfo() {
 		MatchingInfo matchingInfo;
 		try {
@@ -114,9 +63,16 @@ public class MatchController {
 		return matchingInfo;
 	}
 
-	private void resetPairs() {
-		pairs.reset();
-		outputView.printPairResetMessage();
+	private void matchPairs() {
+		MatchingInfo matchingInfo = readMatchingInfo();
+		if (pairs.containsMatchingInfo(matchingInfo)) {
+			if (doRematch()) {
+				pairs.remove(matchingInfo);
+				match(matchingInfo);
+			}
+			return;
+		}
+		match(matchingInfo);
 	}
 
 	private boolean doRematch() {
@@ -135,5 +91,22 @@ public class MatchController {
 
 		pairs.add(matchingInfo, matchingResult);
 		outputView.printMatchingResult(matchingResult);
+	}
+
+	private void showPairs() {
+		MatchingInfo matchingInfo = readMatchingInfo();
+
+		try {
+			outputView.printMatchingResult(pairs.findMatchingResult(matchingInfo));
+
+		} catch (IllegalArgumentException e) {
+			outputView.printErrorMessage(e);
+			showPairs();
+		}
+	}
+
+	private void resetPairs() {
+		pairs.reset();
+		outputView.printPairResetMessage();
 	}
 }

@@ -18,6 +18,10 @@ public enum Mission {
 		this.missionName = missionName;
 	}
 
+	public Level getLevel() {
+		return level;
+	}
+
 	public static Mission findByName(String missionName) {
 		return Arrays.stream(values())
 			.filter(m -> m.missionName.equals(missionName))
