@@ -31,7 +31,7 @@ public class InputView {
 		outputView.printRematchingQuestionMessage();
 		String rematchAnswer = Console.readLine();
 
-		Validator.validateReMatchAnswer(rematchAnswer);
+		Validator.validateRematchAnswer(rematchAnswer);
 		if (rematchAnswer.equals("네")) {
 			return true;
 		}

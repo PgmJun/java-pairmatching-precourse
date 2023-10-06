@@ -23,7 +23,7 @@ public class Validator {
 		}
 	}
 
-	public static void validateReMatchAnswer(String answer) {
+	public static void validateRematchAnswer(String answer) {
 		if (!rematchAnswers.contains(answer)) {
 			throw new IllegalArgumentException(REMATCH_ANSWER_ERROR_MESSAGE);
 		}
