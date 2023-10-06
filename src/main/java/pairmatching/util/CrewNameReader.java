@@ -1,5 +1,7 @@
 package pairmatching.util;
 
+import static pairmatching.constant.ErrorMessage.*;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -33,7 +35,7 @@ public class CrewNameReader {
 
 			return crewNames;
 		} catch (IOException e) {
-			throw new IllegalArgumentException("[ERROR] 파일 입출력 오류");
+			throw new IllegalArgumentException(FILE_IO_ERROR_MESSAGE);
 		}
 	}
 }

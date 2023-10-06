@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.constant.ErrorMessage.*;
+
 public class MatchingInfo {
 	private Course course;
 	private Level level;
@@ -10,7 +12,7 @@ public class MatchingInfo {
 		this.level = Level.findByName(levelName);
 		this.mission = Mission.findByName(missionName);
 		if (!mission.getLevel().equals(level)) {
-			throw new IllegalArgumentException("[ERROR] 레벨과 미션이 일치하지 않습니다.");
+			throw new IllegalArgumentException(UNMATCHED_LEVEL_AND_MISSION_ERROR_MESSAGE);
 		}
 	}
 

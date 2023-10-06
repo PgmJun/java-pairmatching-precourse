@@ -6,11 +6,13 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Matching {
-	private List<List<String>> matchingData;
+	private final List<List<String>> matchingData;
 
 	public Matching(List<List<String>> matchingData) {
 		this.matchingData = matchingData;
 	}
+
+
 
 	public List<List<String>> getData() {
 		return matchingData;

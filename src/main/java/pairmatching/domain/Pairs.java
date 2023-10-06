@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.constant.ErrorMessage.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,7 +46,7 @@ public class Pairs {
 
 	private void validateMatchingDataExist(MatchingInfo matchingInfo) {
 		if (!containsMatchingInfo(matchingInfo)) {
-			throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
+			throw new IllegalArgumentException(UNEXIST_MATCHING_HISTORY_ERROR_MESSAGE);
 		}
 	}
 

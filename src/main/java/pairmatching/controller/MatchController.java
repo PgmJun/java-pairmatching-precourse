@@ -1,5 +1,7 @@
 package pairmatching.controller;
 
+import static pairmatching.constant.MatchConstant.*;
+
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 import pairmatching.domain.Crews;
@@ -29,13 +31,13 @@ public class MatchController {
 
 	private void selectFunction() {
 		String function = "";
-		while (!function.equals("Q")) {
+		while (!function.equals(QUIT)) {
 			function = readFunction();
-			if (function.equals("1")) {
+			if (function.equals(MATCH_PAIR)) {
 				matchPairs();
-			} else if (function.equals("2")) {
+			} else if (function.equals(SHOW_PAIR)) {
 				showPairs();
-			} else if(function.equals("3")) {
+			} else if(function.equals(RESET_PAIR)) {
 				resetPairs();
 			}
 		}

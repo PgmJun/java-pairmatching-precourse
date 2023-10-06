@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.constant.ErrorMessage.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,6 +28,6 @@ public enum Mission {
 		return Arrays.stream(values())
 			.filter(m -> m.missionName.equals(missionName))
 			.findAny()
-			.orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 Mission 입니다."));
+			.orElseThrow(() -> new IllegalArgumentException(UNEXIST_MISSION_ERROR_MESSAGE));
 	}
 }

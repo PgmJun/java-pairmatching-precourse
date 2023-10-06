@@ -1,28 +1,31 @@
 package pairmatching.util;
 
+import static pairmatching.constant.MatchConstant.*;
+import static pairmatching.constant.ErrorMessage.*;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class Validator {
-	private final static List<String> functions = Arrays.asList("1", "2", "3", "Q");
-	private final static List<String> rematchAnswers = Arrays.asList("네", "아니오");
+	private final static List<String> functions = Arrays.asList(MATCH_PAIR, SHOW_PAIR, RESET_PAIR, QUIT);
+	private final static List<String> rematchAnswers = Arrays.asList(YES, NO);
 
 	public static void validateFunctionType(String function) {
 
 		if (!functions.contains(function)) {
-			throw new IllegalArgumentException("[ERROR] 존재하지 않는 기능입니다.");
+			throw new IllegalArgumentException(FUNCTION_TYPE_ERROR_MESSAGE);
 		}
 	}
 
 	public static void validateMatchingInfoAmount(String[] matchingInfo) {
-		if (matchingInfo.length != 3) {
-			throw new IllegalArgumentException("[ERROR] 매칭 정보는 '과정','레벨','미션' 총 3가지가 입력되어야 합니다.");
+		if (matchingInfo.length != MATCHING_INFO_SIZE) {
+			throw new IllegalArgumentException(MATCHING_INFO_ERROR_MESSAGE);
 		}
 	}
 
 	public static void validateReMatchAnswer(String answer) {
 		if (!rematchAnswers.contains(answer)) {
-			throw new IllegalArgumentException("[ERROR] '네' 또는 '아니오' 중 하나의 응답만 가능합니다.");
+			throw new IllegalArgumentException(REMATCH_ANSWER_ERROR_MESSAGE);
 		}
 	}
 }
